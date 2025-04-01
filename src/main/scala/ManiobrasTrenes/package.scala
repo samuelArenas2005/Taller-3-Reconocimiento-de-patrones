@@ -11,10 +11,7 @@ package object ManiobrasTrenes {
 
   def aplicarMovimiento(e:Estado, m:Movimiento): Estado = {
     m match {
-    case Uno(n)  => n match
-      case x if x > 0 =>  (e._1 take(e._1.length - n),e._1.takeRight(n) ++ e._2 ,e._3)
-      case x if x < 0  => (e._1 ++ e._2.take(-n),e._2.drop(-n),e._3)
-      case _ => e
+    case Uno(n)  => if (n>0) (e._1 take(e._1.length - n),e._1.takeRight(n) ++ e._2 ,e._3) else if (n<0) (e._1 take(e._1.length - n),e._1.takeRight(n) ++ e._2 ,e._3) else (e._1 ++ e._2.take(-n),e._2.drop(-n),e._3)
     case Dos(n) => n match
       case x if x > 0 => (e._1 take(e._1.length - n),e._2,e._1.takeRight(n) ++ e._3)
       case x if x < 0  => (e._1 ++ e._3.take(-n),e._2,e._3.drop(-n))
