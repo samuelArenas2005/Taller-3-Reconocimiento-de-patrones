@@ -1,4 +1,5 @@
 package object ManiobrasTrenes {
+
   type Vagon = Any;
   type Tren = List[Vagon]
   type Estado = (Tren, Tren, Tren)
@@ -36,14 +37,14 @@ package object ManiobrasTrenes {
         if ( x == t2.head ) definirMovimiento((xs,Nil,Nil),movs, t2.tail)
         else{
           val mover = e._1 dropWhile (_ != t2.head)
-          definirMovimiento(aplicarMovimiento(e, Uno(mover.length)), Uno(mover.length) :: movs, t2)
+          definirMovimiento(aplicarMovimiento(e, Uno(mover.length)), movs ++ (Uno(mover.length) :: Nil), t2)
         }
       }
-      case(y :: ys, x :: xs, Nil) => definirMovimiento(aplicarMovimiento(e, Dos(e._1.length)), Dos(e._1.length) :: movs, t2 )
-      case(Nil, x :: xs, y :: ys) => definirMovimiento(aplicarMovimiento(e, Uno(-e._2.length)), Uno(-e._2.length) :: movs, t2 )
-      case(x :: xs, Nil, y :: ys) => definirMovimiento(aplicarMovimiento(e, Dos(-e._3.length)), Dos(-e._3.length) :: movs, t2 )
+      case(y :: ys, x :: xs, Nil) => definirMovimiento(aplicarMovimiento(e, Dos(e._1.length)), movs ++ (Dos(e._1.length) :: Nil), t2 )
+      case(Nil, x :: xs, y :: ys) => definirMovimiento(aplicarMovimiento(e, Uno(-e._2.length)), movs ++ (Uno(-e._2.length) :: Nil), t2 )
+      case(x :: xs, Nil, y :: ys) => definirMovimiento(aplicarMovimiento(e, Dos(-e._3.length)), movs ++ (Dos(-e._3.length) :: Nil) , t2 )
     }
-    definirMovimiento((t1, Nil, Nil), Nil, t2).reverse
+    definirMovimiento((t1, Nil, Nil), Nil, t2)
   }
 
 }
