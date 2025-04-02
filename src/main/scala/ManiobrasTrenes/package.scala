@@ -15,7 +15,6 @@ package object ManiobrasTrenes {
         if (n > 0) (e._1.take(e._1.length - n), e._1.drop(e._1.length - n) ++ e._2, e._3)
         else if (n < 0) (e._1 ++ e._2.take(-n), e._2.drop(-n), e._3)
         else e
-
       case Dos(n) =>
         if (n > 0) (e._1.take(e._1.length - n), e._2, e._1.drop(e._1.length - n) ++ e._3)
         else if (n < 0) (e._1 ++ e._3.take(-n), e._2, e._3.drop(-n))
@@ -45,5 +44,4 @@ package object ManiobrasTrenes {
     }
     definirMovimiento((t1, Nil, Nil), Nil, t2).reverse
   }
-
 }
