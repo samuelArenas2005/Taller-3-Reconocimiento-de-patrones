@@ -22,5 +22,6 @@ aplicarMovimientos(ejemplo, List(Uno(4), Uno(-3), Dos(3), Uno(-1),
 
 
 
+
 definirManiobra(List('a', 'b', 'c', 'd'), List('d', 'b', 'c', 'a'))
 aplicarMovimientos(ejemplo,List(Uno(1), Dos(3), Uno(-1), Dos(-3), Uno(2), Dos(1), Uno(-2), Dos(-1)) )
