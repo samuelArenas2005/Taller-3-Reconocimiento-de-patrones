@@ -43,16 +43,67 @@ val movs:Maniobra = List(Uno(0), Uno(8), Uno(-9), Uno(3),
   Dos(2)
 )
 
-val movs2:Maniobra = List(Uno(3))
-val movs3:Maniobra = List(Dos(2),Uno(-1))
+val movs2:Maniobra = List(Uno(3)) //Defino una lista de movimientos
+val movs3:Maniobra = List(Dos(2),Uno(-1)) //Defino una lista de movimientos
 
-val estado2 : Estado = (List('a', 'b'), List('e','f'), List( 'c', 'd'))
-val estado3 : Estado = (Nil,Nil,Nil)
+val estado2 : Estado = (List('a', 'b'), List('e','f'), List( 'c', 'd')) //Defino un estado inicial
+val estado3 : Estado = (Nil,Nil,Nil) //Defino un estado inicial vacio
 
-aplicarMovimientos(e1,movs)
-aplicarMovimientos(e1,movs2)
-aplicarMovimientos(estado2,movs3)
-aplicarMovimientos(estado3,movs3)
+aplicarMovimientos(e1,movs) // Caso con la lista de movimientos aplicados en aplicarMovimiento
+aplicarMovimientos(e1,movs2) // Caso de prueba 2
+aplicarMovimientos(estado2,movs3) // Caso de prueba 3
+aplicarMovimientos(estado3,movs3) // Caso de prueba 4
+
+//Casos de prueba definirManiobra
+// 1. Trenes idénticos
+val a1 = definirManiobra(
+  List('a', 'b', 'c'),
+  List('a', 'b', 'c')
+)
+//Comprobacion con aplicarMovimientos
+aplicarMovimientos((List('a', 'b', 'c'),Nil,Nil), a1)
+
+// 2. Inversión completa
+val a2 = definirManiobra(
+  List(1, 2, 3),
+  List(3, 2, 1)
+)
+aplicarMovimientos((List(1, 2, 3),Nil,Nil), a2)
+
+// 3. Un solo vagón
+val a3 = definirManiobra(
+  List('x'),
+  List('x')
+)
+aplicarMovimientos((List('x'),Nil,Nil), a3)
+
+// 4. Reordenación parcial
+val a4 = definirManiobra(
+  List('a', 'b', 'c'),
+  List('c', 'b', 'a')
+)
+aplicarMovimientos((List('a', 'b', 'c'),Nil,Nil), a4)
+
+// 5. Tren vacío
+val a5 = definirManiobra(
+  List(),
+  List()
+)
+aplicarMovimientos((List(),Nil,Nil), a5)
+
+// 6. Ejemplo del enunciado
+val a6 = definirManiobra(
+  List('a', 'b', 'c', 'd'),
+  List('d', 'b', 'c', 'a')
+)
+aplicarMovimientos((List('a', 'b', 'c', 'd'),Nil,Nil), a6)
+
+// 7. Elementos no consecutivos
+val a7 = definirManiobra(
+  List('a', 'b', 'c', 'd'),
+  List('d', 'a', 'c', 'b')
+)
+aplicarMovimientos((List('a', 'b', 'c', 'd'),Nil,Nil), a7)
 
 
 
