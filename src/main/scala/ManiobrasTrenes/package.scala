@@ -24,14 +24,14 @@ package object ManiobrasTrenes {
   }
 
   def aplicarMovimientos(e: Estado, movs: Maniobra): List[Estado] = movs match{
-    case y :: Nil => aplicarMovimiento(e, y) :: Nil
+    case y :: Nil => e :: aplicarMovimiento(e, y) :: Nil
     case y :: ys => e :: aplicarMovimientos(aplicarMovimiento(e, y), ys)
   }
 
   def definirManiobra(t1:Tren,t2:Tren): Maniobra = {
 
     def definirMovimiento(e: Estado, movs: Maniobra, t2: Tren): Maniobra = e match{
-      case (Nil, Nil, Nil) => movs
+      case (Nil, Nil, Nil) =>  movs ++ List(Uno(0))
       case (x:: xs,Nil,Nil) => {
         if ( x == t2.head ) definirMovimiento((xs,Nil,Nil),movs, t2.tail)
         else{
